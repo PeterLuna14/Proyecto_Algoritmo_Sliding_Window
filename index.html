@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Palabra más larga - Sliding Window</title>
+</head>
+<body>
+
+<h2>Encuentra la palabra más larga en un texto</h2>
+
+<textarea id="texto" rows="5" cols="50" placeholder="Escribe tu párrafo aquí..."></textarea><br><br>
+<button onclick="palabraMasLarga()">Buscar palabra más larga</button>
+
+<p id="resultado"></p>
+
+<!-- Nombre del autor -->
+<p style="margin-top: 20px; font-style: italic;">By: Pedro Luna</p>
+
+<script>
+function palabraMasLarga() {
+    const texto = document.getElementById('texto').value;
+    let inicio = 0;
+    let palabraMax = '';
+
+    for (let fin = 0; fin <= texto.length; fin++) {
+        if (fin === texto.length || texto[fin] === ' ') {
+            const palabraActual = texto.substring(inicio, fin);
+            if (palabraActual.length > palabraMax.length) {
+                palabraMax = palabraActual;
+            }
+            inicio = fin + 1;
+        }
+    }
+
+    document.getElementById('resultado').innerText = "La palabra más larga es: " + palabraMax;
+}
+</script>
+
+</body>
+</html>
